@@ -1,0 +1,14 @@
+version: "3.1"
+services:
+  air-pollution-streamr-redis:
+    restart: on-failure
+    build: docker/redis/config
+    volumes:
+      - ./docker/redis/resources:/data
+    environment:
+      - RABBITMQ_NODENAME=rabbit@localhost
+      - RABBITMQ_DEFAULT_VHOST=trading-vhost
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+    ports:
+      - 6379:6379
